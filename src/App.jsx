@@ -7,6 +7,7 @@ import { useState } from 'react';
 
 function App() {
   const [contacts, setContacts] = useState(initialContacts);
+  const [filter, setFilter] = useState('');
 
   const deleteContact = contactId => {
     console.log(contactId);
@@ -15,12 +16,16 @@ function App() {
     });
   };
 
+  const visibleContacts = contacts.filter(contact =>
+    contact.name.toLocaleLowerCase().includes(filter.toLocaleLowerCase())
+  );
+
   return (
     <div>
       <h1>Phonebook</h1>
       <ContactForm />
-      <SearcBox />
-      <ContactList contact={contacts} onDelete={deleteContact} />
+      <SearcBox value={filter} onChange={setFilter} />
+      <ContactList contact={visibleContacts} onDelete={deleteContact} />
     </div>
   );
 }

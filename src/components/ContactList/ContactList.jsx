@@ -6,7 +6,13 @@ export default function ContactList({ contact, onDelete }) {
     <div className={css.container}>
       <ul className={css.list}>
         {contact.map(({ id, name, number }) => (
-          <Contact key={id} name={name} number={number} onDelete={onDelete} />
+          <Contact
+            key={id}
+            id={id}
+            name={name}
+            number={number}
+            onDelete={onDelete}
+          />
         ))}
       </ul>
     </div>
