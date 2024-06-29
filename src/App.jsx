@@ -9,21 +9,26 @@ function App() {
   const [contacts, setContacts] = useState(initialContacts);
   const [filter, setFilter] = useState('');
 
+  const addContact = newUser => {
+    setContacts(prevContacts => {
+      return [...prevContacts, newUser];
+    });
+  };
+
   const deleteContact = contactId => {
-    console.log(contactId);
     setContacts(prevContacts => {
       return prevContacts.filter(contact => contact.id !== contactId);
     });
   };
 
   const visibleContacts = contacts.filter(contact =>
-    contact.name.toLocaleLowerCase().includes(filter.toLocaleLowerCase())
+    contact.name.toLowerCase().includes(filter.toLowerCase())
   );
 
   return (
     <div>
       <h1>Phonebook</h1>
-      <ContactForm />
+      <ContactForm onAdd={addContact} />
       <SearcBox value={filter} onChange={setFilter} />
       <ContactList contact={visibleContacts} onDelete={deleteContact} />
     </div>

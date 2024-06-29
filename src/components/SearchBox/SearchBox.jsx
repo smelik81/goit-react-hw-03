@@ -2,7 +2,7 @@ import css from './SearchBox.module.css';
 import { useId } from 'react';
 
 export default function SearcBox({ value, onChange }) {
-  const id = useId();
+  const inputId = useId();
   const handleInputChange = event => {
     console.log(event.target.value);
     onChange(event.target.value);
@@ -10,11 +10,11 @@ export default function SearcBox({ value, onChange }) {
   return (
     <div className={css.container}>
       <div className={css.wrapper}>
-        <label htmlFor={id} className={css.label}>
+        <label htmlFor={inputId} className={css.label}>
           Find contacts by name
         </label>
         <input
-          id={id}
+          id={inputId}
           type="text"
           className={css.input}
           value={value}
